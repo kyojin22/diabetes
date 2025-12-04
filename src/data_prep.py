@@ -18,10 +18,10 @@ class DiabetesPreprocessor:
         Q3 = numeric.quantile(0.75)
         IQR = Q3 - Q1
 
-        outliers_mask = (numeric < (Q1 - 1.5 * IQR)) | (numeric > (Q3 + 1.5 * IQR))
-        outliers_count = outliers_mask.sum()
+        mask = (numeric < (Q1 - 1.5 * IQR)) | (numeric > (Q3 + 1.5 * IQR))
+        count = mask.sum()
 
-        self.outliers_iqr = outliers_count[outliers_count > 0]
+        self.outliers_iqr = count[count > 0]
         print("\nDetected outliers using IQR:")
         print(self.outliers_iqr)
         return self.outliers_iqr
@@ -48,8 +48,6 @@ class DiabetesPreprocessor:
 
         X_test_scaled = X_test.copy()
         X_test_scaled[numeric_cols] = self.scaler.transform(X_test[numeric_cols])
-
-        print("\nScaling completed using RobustScaler.")
 
         return X_train_scaled, X_test_scaled
 
