@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from joblib import dump
 from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor
 from sklearn.linear_model import ElasticNet, Lasso, LinearRegression, Ridge
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
@@ -69,6 +70,7 @@ print("Best XGB params (Bayesian):", bayes_search_xgb.best_params_)
 
 xgb_best_bayes = bayes_search_xgb.best_estimator_
 pred_xgb_bayes = xgb_best_bayes.predict(X_test)
+dump(xgb_best_bayes, "models/xgboost_bayesian.joblib")
 
 results.append(evaluate("XGB Bayesian", y_test, pred_xgb_bayes))
 

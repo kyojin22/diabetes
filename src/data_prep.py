@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from joblib import dump
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import RobustScaler
 
@@ -56,8 +57,12 @@ class DiabetesPreprocessor:
         self.detect_outliers_iqr()
         X_train, X_test, y_train, y_test = self.split()
         X_train_scaled, X_test_scaled = self.scale(X_train, X_test)
+        self.save_scaler()
 
         return X_train_scaled, X_test_scaled, y_train, y_test, self.outliers_iqr
+
+    def save_scaler(self, path="models/scaler.joblib"):
+        dump(self.scaler, path)
 
 
 df = pd.read_csv("data/raw/diabetes.csv")
