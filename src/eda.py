@@ -8,7 +8,6 @@ class DiabetesEDA:
     def __init__(self, df: pd.DataFrame) -> None:
         self.df = df
 
-    # OVERVIEW
     def overview(self):
         print("=== SHAPE ===")
         print(self.df.shape, "\n")
@@ -19,25 +18,21 @@ class DiabetesEDA:
         print("=== DESCRIBE ===")
         print(self.df.describe().T, "\n")
 
-    # MISSING VALUES
     def missing_values(self):
         print("=== MISSING VALUES ===")
         print(self.df.isnull().sum(), "\n")
 
-    # CORRELATION HEATMAP
     def correlation_heatmap(self):
         plt.figure(figsize=(10, 8))
         sns.heatmap(self.df.corr(), annot=True, cmap="coolwarm")
         plt.title("Correlation Heatmap")
         plt.show()
 
-    # FEATURE DISTRIBUTIONS
     def feature_distributions(self):
         self.df.hist(figsize=(12, 10), bins=20)
         plt.suptitle("Feature Distributions")
         plt.show()
 
-    # BOXPLOT OUTLIERS
     def show_outliers(self):
         for col in self.df.select_dtypes(include=np.number).columns:
             plt.figure()
@@ -45,7 +40,6 @@ class DiabetesEDA:
             plt.title(f"Boxplot of {col}")
             plt.show()
 
-    # DETECT OUTLIERS USING IQR
     def outliers(self):
         outlier_counts = {}
         for col in self.df.select_dtypes(include=np.number).columns:
@@ -59,7 +53,6 @@ class DiabetesEDA:
         print(pd.Series(outlier_counts))
         return outlier_counts
 
-    # TARGET DISTRIBUTION
     def target_distribution(self):
         plt.figure(figsize=(8, 5))
         sns.histplot(data=self.df, x="Y", kde=True)
