@@ -1,12 +1,6 @@
-# 🩺 Diabetes Progression Prediction
+# Diabetes Progression Prediction
 
-This project implements an **end-to-end Machine Learning system** for predicting **disease progression after one year** for diabetes patients.  
-The project includes:
-
-- Full **Exploratory Data Analysis (EDA)**
-- **Data preprocessing** (outliers, scaling...)
-- Multiple **regression models** + hyperparameter tuning
-- A **Streamlit application** for interactive prediction
+This app predicts **disease progression after one year** for diabetes patients.
 
 This project was developed as part of the **Machine Learning** coursework.
 
@@ -18,8 +12,7 @@ This project was developed as part of the **Machine Learning** coursework.
 - **Number of features:** 10  
 - **Target variable:** Y (disease progression score)
 - **Dataset type:** Regression problem  
-
-[Link to the dataset](https://learn.microsoft.com/en-us/azure/open-datasets/dataset-diabetes?tabs=azureml-opendatasets)
+- [Link to the dataset](https://learn.microsoft.com/en-us/azure/open-datasets/dataset-diabetes?tabs=azureml-opendatasets)
 
 ### Features
 
@@ -52,13 +45,30 @@ This project was developed as part of the **Machine Learning** coursework.
 | Boosting | XGBoost (Default) | 44.8165 | 3217.9541 | 56.7270 | 0.3926 |
 | Boosting | CatBoost | 44.3645 | 2872.1155 | 53.5921 | 0.4579 |
 
+## Usage
+
+Clone the repository
+```
+git clone git@github.com:kyojin22/diabetes.git
+```
+
+Create virtual environment and install required libraries
+
+macOS / Linux
+```
+python -m venv venv && source venv/bin/activate && pip install -r requirements.txt
+```
+
+Windows
+```
+python -m venv venv && venv\Scripts\activate && pip install -r requirements.txt
+```
+
+Run streamlit app
+```
+streamlit run streamlit_app/app.py
+```
+
 ## License
 
-This project is for **educational use** only.
-
-## Acknowledgements
-
-- WIUT
-- Azure Open Datasets
-- Scikit-learn Team  
-- Streamlit
+Licensed under the [MIT License](/LICENSE)
